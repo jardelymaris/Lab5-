@@ -3,52 +3,59 @@ package sistemaDeApostas;
 import java.util.ArrayList;
 
 public class Cenario {
-	
+
 	private String cenario;
-	private ArrayList<Aposta> apostasNoCenario; 
+	private ArrayList<Aposta> apostasNoCenario;
 	private String estado;
 	private int valorApostas;
-	
-	public Cenario(String cenario) {
+
+	public Cenario(String cenario) throws NullPointerException, IllegalArgumentException {
+		if (cenario == null) {
+			throw new NullPointerException();
+		}
+		if (cenario.equals("")) {
+			throw new IllegalArgumentException();
+		}
 		this.apostasNoCenario = new ArrayList<>();
 		this.cenario = cenario;
-		this.estado = "nao finalizado";
+		this.estado = "Nao finalizado";
 		this.valorApostas = 0;
 	}
-	
+
 	public boolean cadastraAposta(String nome, int valor, String previsao) {
-		Aposta  aposta = new Aposta(nome, valor, previsao);
+		Aposta aposta = new Aposta(nome, valor, previsao);
 		this.valorApostas += valor;
 		return apostasNoCenario.add(aposta);
 	}
-	
+
 	public int getValorApostas() {
 		return this.valorApostas;
 	}
+
 	public String listarApostas() {
 		String stringDeApostas = "";
-		for(Aposta ap: apostasNoCenario) {
+		for (Aposta ap : apostasNoCenario) {
 			stringDeApostas += ap.toString() + "\n";
 		}
 		return stringDeApostas;
 	}
-	
+
 	public int totalApostas() {
 		return this.apostasNoCenario.size();
 	}
-	
+
 	public String encerraCenario(boolean ocorreu) {
 		if (ocorreu) {
-			this.estado = "finalizado (ocorreu)";
+			this.estado = "Finalizado (ocorreu)";
 		} else {
-			this.estado = "finalizado (nao ocorreu)";
+			this.estado = "Finalizado (nao ocorreu)";
 		}
 		return this.estado;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.cenario; 
+		return this.cenario + " - " + this.estado;
 	}
 
 	@Override
@@ -75,8 +82,5 @@ public class Cenario {
 			return false;
 		return true;
 	}
-
-
-	
 
 }

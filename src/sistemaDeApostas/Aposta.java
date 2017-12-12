@@ -1,24 +1,29 @@
 package sistemaDeApostas;
 
+import java.text.DecimalFormat;
+
 public class Aposta {
-	
+
 	private String nomeApostador;
 	private int valorAposta;
 	private String previsao;
-	
-	public Aposta(String nome, int valor, String previsao) {
+	private DecimalFormat df = new DecimalFormat("0.00");
+
+	public Aposta(String nome, int valor, String previsao) throws NullPointerException, IllegalArgumentException {
+		if (nome == null || previsao == null) {
+			throw new NullPointerException();
+		}
+		if (nome.equals("") || valor <= 0 || previsao.equals("")) {
+			throw new IllegalArgumentException();
+		}
 		this.nomeApostador = nome;
 		this.valorAposta = valor;
 		this.previsao = previsao;
 	}
-	
-	public String previsao() {
-		return this.previsao;
-	}
-	
+
 	@Override
 	public String toString() {
-		return this.nomeApostador + " - R$" + this.valorAposta / 100.00 + " - " + this.previsao; 
+		return this.nomeApostador + " - R$" + df.format(this.valorAposta / 100.00) + " - " + this.previsao;
 	}
 
 	@Override
@@ -45,6 +50,5 @@ public class Aposta {
 			return false;
 		return true;
 	}
-	
-	
+
 }
