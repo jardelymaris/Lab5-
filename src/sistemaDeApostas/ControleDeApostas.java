@@ -9,6 +9,10 @@ public class ControleDeApostas {
 	private int caixa;
 	private double taxa;
 	
+	public int getCaixa() {
+		return this.caixa;
+	}
+	
 	public ControleDeApostas(int caixa, double taxa) {
 		this.cenarios = new ArrayList<>();
 		this.caixa = caixa;
@@ -44,8 +48,6 @@ public class ControleDeApostas {
 	}
 	
 	public void cadastrarAposta(int cenario, String nome, int valor, String previsao) {
-		this.caixa += valor * taxa;
-		valor -= valor * taxa; 
 		this.cenarios.get(cenario).cadastraAposta(nome, valor, previsao);
 	}
 	
@@ -59,6 +61,10 @@ public class ControleDeApostas {
 	
 	public String exibeApostas(int cenario) {
 		return this.cenarios.get(cenario).listarApostas();
+	}
+	
+	public int caixaCenario(int cenario) {
+		return (int) (this.cenarios.get(cenario).getValorApostas() * this.taxa);
 	}
 	
 	public int rateioCenario(int cenario) {
