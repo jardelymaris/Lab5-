@@ -1,6 +1,13 @@
 package sistemaDeApostas;
 
+import easyaccept.EasyAccept;
+
 public class Facade {
+	
+	public static void main(String[] args) {
+		args = new String[] {"sistemaDeApostas.Facade", "lib/acceptance_test/us1_test.txt"};
+		EasyAccept.main(args);
+	}
 
 	private ControleDeApostas controle;
 

@@ -13,18 +13,18 @@ public class testCenario {
 
 	@Before
 	public void criaCenario() {
-		this.cenario = new Cenario("Vou superar a ultima semana de aula de dezembro");
+		this.cenario = new Cenario("Vou superar a ultima semana de aula de dezembro", 1);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testCenarioNulo() {
-		this.cenario = new Cenario(null);
+		this.cenario = new Cenario(null, 1);
 		fail("O argumento do cenario nao pode ser nulo");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCenarioVazio() {
-		this.cenario = new Cenario("");
+		this.cenario = new Cenario("", 1);
 		fail("O argumento do cenario nao pode ser vazio");
 	}
 
@@ -109,30 +109,30 @@ public class testCenario {
 	
 	@Test
 	public void testToStringCenarioNaoFinalizado() {
-		assertEquals(this.cenario.toString(), "Vou superar a ultima semana de aula de dezembro - Nao finalizado");
+		assertEquals(this.cenario.toString(), "1 - Vou superar a ultima semana de aula de dezembro - Nao finalizado");
 	}
 	
 	@Test
 	public void testToStringCenarioFinalizadoOcorreu() {
 		this.cenario.encerraCenario(true);
-		assertEquals(this.cenario.toString(), "Vou superar a ultima semana de aula de dezembro - Finalizado (ocorreu)");
+		assertEquals(this.cenario.toString(), "1 - Vou superar a ultima semana de aula de dezembro - Finalizado (ocorreu)");
 	}
 	
 	@Test
 	public void testToStringCenarioFinalizadoNaoOcorreu() {
 		this.cenario.encerraCenario(false);
-		assertEquals(this.cenario.toString(), "Vou superar a ultima semana de aula de dezembro - Finalizado (nao ocorreu)");
+		assertEquals(this.cenario.toString(), "1 - Vou superar a ultima semana de aula de dezembro - Finalizado (nao ocorreu)");
 	}
 	
 	@Test
 	public void testEqualsCenariosIguais() {
-		Cenario cenario1 = new Cenario("Vou superar a ultima semana de aula de dezembro");
+		Cenario cenario1 = new Cenario("Vou superar a ultima semana de aula de dezembro", 2);
 		assertTrue(cenario.equals(cenario1));
 	}
 	
 	@Test
 	public void testEqualsCenariosDiferentes() {
-		Cenario cenario1 = new Cenario("Ser fitness em 2018!");
+		Cenario cenario1 = new Cenario("2 - Ser fitness em 2018!", 2);
 		assertFalse(cenario.equals(cenario1));
 	}
 }

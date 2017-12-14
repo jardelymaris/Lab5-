@@ -8,14 +8,16 @@ public class Cenario {
 	private ArrayList<Aposta> apostasNoCenario;
 	private String estado;
 	private int valorApostas;
+	private int numeracaoDoCenario;
 
-	public Cenario(String cenario) throws NullPointerException, IllegalArgumentException {
+	public Cenario(String cenario, int numeracao) throws NullPointerException, IllegalArgumentException {
 		if (cenario == null) {
 			throw new NullPointerException();
 		}
 		if (cenario.equals("")) {
 			throw new IllegalArgumentException();
 		}
+		this.numeracaoDoCenario = numeracao;
 		this.apostasNoCenario = new ArrayList<>();
 		this.cenario = cenario;
 		this.estado = "Nao finalizado";
@@ -55,7 +57,7 @@ public class Cenario {
 
 	@Override
 	public String toString() {
-		return this.cenario + " - " + this.estado;
+		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado;
 	}
 
 	@Override

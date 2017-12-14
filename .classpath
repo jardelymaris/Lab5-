@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="testes"/>
+	<classpathentry kind="src" path="lib"/>
+	<classpathentry exported="true" kind="lib" path="/home/jardelymss/eclipse-workspace/LAB5_Jardely/lib/easyaccept.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

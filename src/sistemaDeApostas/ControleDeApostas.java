@@ -22,7 +22,7 @@ public class ControleDeApostas {
 	public int cadastrarCenario(String descricao) {
 		for (Cenario cenario : cenarios) {
 			if (!cenario.equals(descricao)) {
-				Cenario cenarioAdd = new Cenario(descricao);
+				Cenario cenarioAdd = new Cenario(descricao, cenarios.size() + 1);
 				this.cenarios.add(cenarioAdd);
 			}
 		}
@@ -30,7 +30,7 @@ public class ControleDeApostas {
 	}
 
 	public String exibirCenario(int cenario) {
-		return cenario + " - " + this.cenarios.get(cenario).toString();
+		return this.cenarios.get(cenario - 1).toString();
 	}
 
 	public String exibirCenarios() {
@@ -44,32 +44,32 @@ public class ControleDeApostas {
 	}
 
 	public void fecharAposta(int cenario, boolean ocorreu) {
-		this.cenarios.get(cenario).encerraCenario(ocorreu);
+		this.cenarios.get(cenario - 1).encerraCenario(ocorreu);
 	}
 
 	public void cadastrarAposta(int cenario, String nome, int valor, String previsao) {
-		this.cenarios.get(cenario).cadastraAposta(nome, valor, previsao);
+		this.cenarios.get(cenario - 1).cadastraAposta(nome, valor, previsao);
 	}
 
 	public int exibirValorTotalApostas(int cenario) {
-		return this.cenarios.get(cenario).getValorApostas();
+		return this.cenarios.get(cenario - 1).getValorApostas();
 	}
 
 	public int exibirTotalApostas(int cenario) {
-		return this.cenarios.get(cenario).totalApostas();
+		return this.cenarios.get(cenario - 1).totalApostas();
 	}
 
 	public String exibeApostas(int cenario) {
-		return this.cenarios.get(cenario).listarApostas();
+		return this.cenarios.get(cenario - 1).listarApostas();
 	}
 
 	public int caixaCenario(int cenario) {
-		return (int) (this.cenarios.get(cenario).getValorApostas() * this.taxa);
+		return (int) (this.cenarios.get(cenario - 1).getValorApostas() * this.taxa);
 	}
 
 	public int rateioCenario(int cenario) {
-		this.caixa += this.cenarios.get(cenario).getValorApostas() * this.taxa;
-		return (int) (this.cenarios.get(cenario).getValorApostas()
-				- this.cenarios.get(cenario).getValorApostas() * this.taxa);
+		this.caixa += this.cenarios.get(cenario - 1).getValorApostas() * this.taxa;
+		return (int) (this.cenarios.get(cenario - 1).getValorApostas()
+				- this.cenarios.get(cenario - 1).getValorApostas() * this.taxa);
 	}
 }
