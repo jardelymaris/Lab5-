@@ -9,12 +9,12 @@ import java.util.ArrayList;
  * @author Jardely Maris da Silva Santos - 117110274
  *
  */
-public class Cenario {
+public abstract class Cenario {
 
-	private String cenario;
-	private ArrayList<Aposta> apostasNoCenario;
-	private String estado;
-	private int numeracaoDoCenario;
+	protected String cenario;
+	protected ArrayList<Aposta> apostasNoCenario;
+	protected String estado;
+	protected int numeracaoDoCenario;
 
 	/**
 	 * Construtor de Cenario que recebe uma descricao e identificador.
@@ -44,6 +44,9 @@ public class Cenario {
 		this.cenario = cenario;
 		this.estado = "Nao finalizado";
 	}
+	
+	public abstract int getBonus();
+	
 
 	/**
 	 * Metodo que retorna a numeracao do cenario.
@@ -153,16 +156,7 @@ public class Cenario {
 		return this.estado;
 	}
 
-	/**
-	 * Metodo sobrescrito do toString.
-	 * 
-	 * @return uma string contendo a representacao do cenario no formato: numeracao
-	 *         - cenario - estado.
-	 */
-	@Override
-	public String toString() {
-		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado;
-	}
+	
 
 	/**
 	 * Metodo hashCode sobrescrito.

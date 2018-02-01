@@ -58,14 +58,23 @@ public class Controller {
 	/**
 	 * Metodo que cadastra cenario e renorna um inteiro que o identifica.
 	 * 
-	 * @param descricao
+	 * @param descricao((CenarioBonus) 
 	 *            descricao do cenario no formato string.
 	 * @return o identificador inteiro do cenario.
 	 */
 	public int cadastrarCenario(String descricao) {
-		Cenario cenario = new Cenario(descricao, cenarios.size() + 1);
+		Cenario cenario = new CenarioNormal(descricao, cenarios.size() + 1);
 		this.cenarios.add(cenario);
 		return cenarios.size();
+	}
+	
+	public int cadastrarCenario(String descricao, int bonus) {
+		this.caixa -= bonus;
+		Cenario cenario = new CenarioBonus(descricao, cenarios.size() + 1, bonus);
+		this.cenarios.add(cenario);
+		
+		return cenarios.size();
+		
 	}
 
 	/**
@@ -234,6 +243,7 @@ public class Controller {
 		}
 		this.caixa += this.cenarios.get(idCenario - 1).valorApostas() * this.taxa;
 		return (int) ((this.cenarios.get(idCenario - 1).valorApostas()
-				- this.cenarios.get(idCenario - 1).valorApostas() * this.taxa));
+				- this.cenarios.get(idCenario - 1).valorApostas() * this.taxa)) + this.cenarios.get(idCenario -1).getBonus();
 	}
+	
 }
