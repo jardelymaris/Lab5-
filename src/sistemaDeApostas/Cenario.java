@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Jardely Maris da Silva Santos - 117110274
  *
  */
-public abstract class Cenario {
+public class Cenario {
 
 	protected String cenario;
 	protected ArrayList<Aposta> apostasNoCenario;
@@ -44,9 +44,6 @@ public abstract class Cenario {
 		this.cenario = cenario;
 		this.estado = "Nao finalizado";
 	}
-	
-	public abstract int getBonus();
-	
 
 	/**
 	 * Metodo que retorna a numeracao do cenario.
@@ -71,6 +68,18 @@ public abstract class Cenario {
 	public boolean cadastraAposta(String nome, int valor, String previsao) {
 		Aposta aposta = new Aposta(nome, valor, previsao);
 		return apostasNoCenario.add(aposta);
+	}
+	
+	public int cadastraApostaAsseguradaPorValor(String apostador,int cenario,  int valor, String previsao, int valorSeguro, int custo) {
+		Aposta aposta = new Aposta(apostador, valor, previsao, valorSeguro, custo, "valor");
+		this.apostasNoCenario.add(aposta);
+		return this.apostasNoCenario.size() - 1;
+	}
+	
+	public int cadastraApostaAsseguradaPorTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		Aposta aposta = new Aposta(apostador, valor, previsao, taxa, custo, "valor");
+		this.apostasNoCenario.add(aposta);
+		return this.apostasNoCenario.size() - 1;
 	}
 
 	/**
@@ -155,9 +164,24 @@ public abstract class Cenario {
 		}
 		return this.estado;
 	}
-
 	
 
+	/**
+	 * Metodo sobrescrito do toString.
+	 * 
+	 * @return uma string contendo a representacao do cenario no formato: numeracao
+	 *         - cenario - estado.
+	 */
+	@Override
+	public String toString() {
+		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado;
+	}
+	
+	
+	public int getBonus() {
+		return 0;
+	}
+	
 	/**
 	 * Metodo hashCode sobrescrito.
 	 * 

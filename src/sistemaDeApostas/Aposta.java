@@ -15,6 +15,7 @@ public class Aposta {
 	private int valorAposta;
 	private String previsao;
 	private DecimalFormat df = new DecimalFormat("0.00");
+	private Seguro seguro;
 
 	/**
 	 * Construtor de Aposta que recebe nome do apostador, valor e previsao, e lanca
@@ -51,6 +52,19 @@ public class Aposta {
 		this.nomeApostador = nome;
 		this.valorAposta = valor;
 		this.previsao = previsao;
+	}
+
+	public Aposta(String nome, int valor, String previsao, double valorSeguro, int custo, String tipo) {
+		this(nome, valor, previsao);
+		if (tipo.equals("valor")) {
+			this.seguro = new SeguroPorValor(custo, (int) valorSeguro);
+
+		}
+		if (tipo.equals("taxa")) {
+			this.seguro = new SeguroPorTaxa(custo, valorSeguro);
+
+		}
+
 	}
 
 	/**

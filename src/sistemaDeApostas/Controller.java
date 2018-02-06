@@ -63,7 +63,7 @@ public class Controller {
 	 * @return o identificador inteiro do cenario.
 	 */
 	public int cadastrarCenario(String descricao) {
-		Cenario cenario = new CenarioNormal(descricao, cenarios.size() + 1);
+		Cenario cenario = new Cenario(descricao, cenarios.size() + 1);
 		this.cenarios.add(cenario);
 		return cenarios.size();
 	}
@@ -145,6 +145,15 @@ public class Controller {
 			}
 		}
 		throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+	}
+	
+	public int cadastraApostaAsseguradaPorValor(int idCenario, String apostador, int valor, String previsao, int valorSeguro, int custo)) {
+		for (Cenario cenario: cenarios) {
+			if (cenario.getNumeracaoDoCenario() == idCenario) {
+				return cenario.cadastraApostaAsseguradaPorValor(apostador, idCenario, valor, previsao, valorSeguro, custo);
+				
+			}
+		}
 	}
 
 	/**
