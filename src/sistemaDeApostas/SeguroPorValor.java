@@ -16,13 +16,5 @@ public class SeguroPorValor extends Seguro{
 	public String toString() {
 		return "- ASSEGURADA (VALOR) - " + this.valor;
 	}
-	
-	
-
-	
-
-
-	
-	
 
 }

@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>lib/acceptance_test/us5_test.txt</name>
+			<type>1</type>
+			<location>/home/jardelymss/Área de Trabalho/LAB5 - P1/lib/acceptance_test/us5_test.txt</location>
+		</link>
+		<link>
+			<name>lib/acceptance_test/us6_test.txt</name>
+			<type>1</type>
+			<location>/home/jardelymss/Área de Trabalho/LAB5 - P1/lib/acceptance_test/us6_test.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>

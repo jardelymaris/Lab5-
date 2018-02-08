@@ -7,7 +7,7 @@ public abstract class Seguro {
 	public Seguro(int custo) {
 		this.custo = custo;
 	}
-
+		
 	public int getCusto() {
 		return this.custo;
 		

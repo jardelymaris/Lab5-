@@ -147,13 +147,25 @@ public class Controller {
 		throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
 	}
 	
-	public int cadastraApostaAsseguradaPorValor(int idCenario, String apostador, int valor, String previsao, int valorSeguro, int custo)) {
+	public int cadastraApostaAsseguradaPorValor(int idCenario, String apostador, int valor, String previsao, double valorSeguro, int custo) {
 		for (Cenario cenario: cenarios) {
 			if (cenario.getNumeracaoDoCenario() == idCenario) {
-				return cenario.cadastraApostaAsseguradaPorValor(apostador, idCenario, valor, previsao, valorSeguro, custo);
-				
+				return cenario.cadastraApostaAsseguradaPorValor(apostador, idCenario, valor, previsao, (int) valorSeguro, custo);
 			}
 		}
+		
+		this.caixa += custo;
+		return 0;
+	}
+	
+	public int cadastraApostaAsseguradaPorTaxa(int idCenario, String apostador, int valor, String previsao, double valorSeguro, int custo) {
+		for (Cenario cenario: cenarios) {
+			if (cenario.getNumeracaoDoCenario() == idCenario) {
+				return cenario.cadastraApostaAsseguradaPorTaxa(idCenario, apostador, valor, previsao, valorSeguro, custo);
+			}
+		}
+		this.caixa += custo;
+		return 0;
 	}
 
 	/**
@@ -251,6 +263,7 @@ public class Controller {
 					"Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
 		this.caixa += this.cenarios.get(idCenario - 1).valorApostas() * this.taxa;
+//		if (this.cenarios.get(idCenario).)
 		return (int) ((this.cenarios.get(idCenario - 1).valorApostas()
 				- this.cenarios.get(idCenario - 1).valorApostas() * this.taxa)) + this.cenarios.get(idCenario -1).getBonus();
 	}

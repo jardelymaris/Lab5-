@@ -75,7 +75,7 @@ public class Aposta {
 	public int getValorAposta() {
 		return this.valorAposta;
 	}
-
+	
 	/**
 	 * Metodo que retorna a previsa da aposta.
 	 * 
