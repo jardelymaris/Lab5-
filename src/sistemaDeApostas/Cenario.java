@@ -11,9 +11,21 @@ import java.util.ArrayList;
  */
 public class Cenario {
 
+	/**
+	 * Representacao do cenario, no fomato String.
+	 */
 	protected String cenario;
+	/**
+	 * Uma lista de apostas de um cenario.
+	 */
 	protected ArrayList<Aposta> apostasNoCenario;
+	/**
+	 * Representacao do estado de um cenario, no formato String.
+	 */
 	protected String estado;
+	/**
+	 * Representacao da numeracao de cenarios, no formato inteiro.
+	 */
 	protected int numeracaoDoCenario;
 
 	/**
@@ -33,7 +45,7 @@ public class Cenario {
 		if (cenario == null) {
 			throw new NullPointerException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
-		if (cenario.equals("")) {
+		if (cenario.trim().isEmpty()) {
 			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
 		}
 		if (idCenario <= 0) {
@@ -69,17 +81,104 @@ public class Cenario {
 		Aposta aposta = new Aposta(nome, valor, previsao);
 		return apostasNoCenario.add(aposta);
 	}
-	
-	public int cadastraApostaAsseguradaPorValor(String apostador,int cenario,  int valor, String previsao, int valorSeguro, int custo) {
+
+	/**
+	 * Metodo que cadastra uma aposta assegurada por valor.
+	 * 
+	 * @param apostador
+	 *            string que contem o nome do apostador.
+	 * @param valor
+	 *            inteiro que representa o valor da aposta.
+	 * @param previsao
+	 *            afirma se o cenario vai ou nao acontecer, no formato string.
+	 * @param valorSeguro
+	 *            inteiro que representa o valor da aposta assegurada por valor.
+	 * @param custo
+	 *            inteiro que representa o custo da aposta assegurada.
+	 * @return um inteiro que identifica a aposta cadastrada.
+	 */
+	public int cadastraApostaAsseguradaPorValor(String apostador, int valor, String previsao, int valorSeguro,
+			int custo) {
+		if (apostador == null) {
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+		if (apostador.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+		if (valor <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+		}
+		if (valorSeguro <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Valor do seguro nao pode ser menor ou igual a zero");
+		}
+		if (custo <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Custo nao pode ser menor ou igual a zero");
+		}
+		if (previsao == null || previsao.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+			
+		} else if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
+		}
+		
 		Aposta aposta = new Aposta(apostador, valor, previsao, valorSeguro, custo, "valor");
 		this.apostasNoCenario.add(aposta);
-		return this.apostasNoCenario.size() - 1;
+		return this.apostasNoCenario.size();
 	}
-	
-	public int cadastraApostaAsseguradaPorTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
-		Aposta aposta = new Aposta(apostador, valor, previsao, taxa, custo, "valor");
+
+	/**
+	 * Metodo que cadastra uma aposta assegurada por taxa.
+	 * 
+	 * @param apostador
+	 *            string que contem o nome do apostador.
+	 * @param valor
+	 *            inteiro que representa o valor da aposta.
+	 * @param previsao
+	 *            afirma se o cenario vai ou nao acontecer, no formato string.
+	 * @param taxa
+	 *            double que representa a taxa da aposta.
+	 * @param custo
+	 *            inteiro que representa o custo da aposta assegurada por taxa.
+	 * @return um inteiro que identifica a aposta cadastrada.
+	 */
+	public int cadastraApostaAsseguradaPorTaxa(String apostador, int valor, String previsao, double taxa, int custo) {
+		if (apostador == null) {
+			throw new NullPointerException(
+					"Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+		if (apostador.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+		if (valor <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
+		if (taxa <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Valor do seguro nao pode ser menor ou igual a zero");
+		}
+		if (custo <= 0) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Custo nao pode ser menor ou igual a zero");
+		}
+		if (previsao == null || previsao.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+			
+		} else if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
+		}
+		
+		Aposta aposta = new Aposta(apostador, valor, previsao, taxa, custo, "taxa");
 		this.apostasNoCenario.add(aposta);
-		return this.apostasNoCenario.size() - 1;
+		return this.apostasNoCenario.size();
 	}
 
 	/**
@@ -96,11 +195,11 @@ public class Cenario {
 	}
 
 	/**
-	 * Metodo que retorna o valor da soma das apostas vencedoras do cenario.
+	 * Metodo que verifica se a posta é perdedora.
 	 * 
-	 * @return o valor inteiro da soma das apostas vencedoras do cenario.
+	 * @return uma string que informa se aposta eh perdedora.
 	 */
-	public int valorApostas() {
+	public String verificaPerdedor() {
 		String apostaPerdedora;
 
 		if (this.estado.equals("Finalizado (ocorreu)")) {
@@ -108,9 +207,18 @@ public class Cenario {
 		} else {
 			apostaPerdedora = "VAI ACONTECER";
 		}
+		return apostaPerdedora;
+	}
+
+	/**
+	 * Metodo que retorna o valor da soma das apostas vencedoras do cenario.
+	 * 
+	 * @return o valor inteiro da soma das apostas vencedoras do cenario.
+	 */
+	public int valorApostas() {
 		int valor = 0;
 		for (Aposta aposta : apostasNoCenario) {
-			if (aposta.getPrevisao().equals(apostaPerdedora)) {
+			if (aposta.getPrevisao().equals(this.verificaPerdedor())) {
 				valor += aposta.getValorAposta();
 			}
 		}
@@ -124,6 +232,17 @@ public class Cenario {
 	 */
 	public String getEstado() {
 		return this.estado;
+	}
+
+	/**
+	 * Metodo que retorta o valor de uma aposta.
+	 * 
+	 * @param idAposta
+	 *            inteiro identificador do cenario.
+	 * @return um inteiro que contem o valor de uma aposta.
+	 */
+	public int getValorAposta(int idAposta) {
+		return this.apostasNoCenario.get(idAposta).getValorAposta();
 	}
 
 	/**
@@ -149,6 +268,32 @@ public class Cenario {
 	}
 
 	/**
+	 * Metodo que altera de aposta assegurada por taxa para aposta assegurada por
+	 * valor.
+	 * 
+	 * @param apostaAssegurada
+	 *            inteiro identificador da aposta a ser trocada.
+	 * @param taxa
+	 *            valor inteiro que representa o valor da aposta.
+	 */
+	public void alterarSeguroValor(int apostaAssegurada, int valor) {
+		this.apostasNoCenario.get(apostaAssegurada - 1).alteraSeguroValor(valor);
+	}
+
+	/**
+	 * Metodo que altera de aposta assegurada por valor para aposta assegurada por
+	 * taxa.
+	 * 
+	 * @param apostaAssegurada
+	 *            inteiro identificador da aposta a ser trocada.
+	 * @param taxa
+	 *            valor double que representa a taxa da aposta.
+	 */
+	public void alterarSeguroTaxa(int apostaAssegurada, double taxa) {
+		this.apostasNoCenario.get(apostaAssegurada - 1).alteraSeguroTaxa(taxa);
+	}
+
+	/**
 	 * Metodo que encerra o cenario e retorna uma string contendo o estado do
 	 * cenario.
 	 * 
@@ -164,7 +309,6 @@ public class Cenario {
 		}
 		return this.estado;
 	}
-	
 
 	/**
 	 * Metodo sobrescrito do toString.
@@ -176,12 +320,16 @@ public class Cenario {
 	public String toString() {
 		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado;
 	}
-	
-	
-	public int getBonus() {
+
+	/**
+	 * Metodo que retorna o valor zero para apostas que não possuem bonus.
+	 * 
+	 * @return inteiro zero.
+	 */
+	public int getExtra() {
 		return 0;
 	}
-	
+
 	/**
 	 * Metodo hashCode sobrescrito.
 	 * 

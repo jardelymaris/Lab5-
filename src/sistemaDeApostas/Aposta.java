@@ -11,10 +11,28 @@ import java.text.DecimalFormat;
  */
 public class Aposta {
 
+	/**
+	 * Representacao do nome do apostador, no formato string.
+	 */
 	private String nomeApostador;
+
+	/**
+	 * Representacao do valor da aposta no formato inteiro.
+	 */
 	private int valorAposta;
+	/**
+	 * Representacao da previsao do apostador, no formato string.
+	 */
 	private String previsao;
+
+	/**
+	 * Objeto DecimalFormat para deixar numros com duas casas decimais.
+	 */
 	private DecimalFormat df = new DecimalFormat("0.00");
+
+	/**
+	 * Representacao do seguro no formato Seguro.
+	 */
 	private Seguro seguro;
 
 	/**
@@ -37,15 +55,16 @@ public class Aposta {
 		if (nome == null) {
 			throw new NullPointerException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
 		}
-		if (nome.equals("") || nome.equals("  ")) {
+		if (nome.trim().isEmpty()) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
 		}
 		if (valor <= 0) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
 		}
 
-		if (previsao == null || previsao.equals("") || previsao.equals("   ")) {
+		if (previsao == null || previsao.trim().isEmpty()) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+			
 		} else if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
 		}
@@ -54,17 +73,69 @@ public class Aposta {
 		this.previsao = previsao;
 	}
 
+	/**
+	 * Construtor de Aposta que recebe nome do apostador, valor, previsao, valor do
+	 * seguro, custo do seguro e tipo do seguro, e lanca excecao sempre quando algum
+	 * parametro for passado de forma inadequada.
+	 * 
+	 * @param nome
+	 *            nome do apostador no formato String.
+	 * @param valor
+	 *            valor da aposta em centavos, no formato inteiro.
+	 * @param previsao
+	 *            eh a previsao que ou a aposta vai acontecer ou nao.
+	 * @param valorSeguro
+	 *            valor do seguro que pode ser a taxa ou valor, dependendo do tipo
+	 *            do seguro, no formato double.
+	 * @param custo
+	 *            o cuto do seguro, no formato inteiro.
+	 * @param tipo
+	 *            o tipo do seguro, taxa ou valor, no formato string.
+	 * @throws NullPointerException
+	 *             eh lancado quando o nome ou previsao eh nulo
+	 * @throws IllegalArgumentException
+	 *             eh lancado quando nome, valor ou previsao eh passado de forma
+	 *             inadequada.
+	 */
 	public Aposta(String nome, int valor, String previsao, double valorSeguro, int custo, String tipo) {
-		this(nome, valor, previsao);
+		this.nomeApostador = nome;
+		this.valorAposta = valor;
+		this.previsao = previsao;
+		
 		if (tipo.equals("valor")) {
+			if (valorSeguro <= 0) {
+				throw new IllegalArgumentException(
+						"Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+			}
 			this.seguro = new SeguroPorValor(custo, (int) valorSeguro);
-
 		}
 		if (tipo.equals("taxa")) {
 			this.seguro = new SeguroPorTaxa(custo, valorSeguro);
-
 		}
+	}
 
+	/**
+	 * Metodo que altera o seguro da aposta de seguro por taxa para seguro por
+	 * valor.
+	 * 
+	 * @param valor
+	 *            valor do seguro da aposta, no formato inteiro.
+	 */
+	public void alteraSeguroValor(int valor) {
+		Seguro seg = new SeguroPorValor(this.seguro.getCusto(), valor);
+		this.seguro = seg;
+	}
+
+	/**
+	 * Metodo que altera o seguro da aposta de seguro por valor para seguro por
+	 * taxa.
+	 * 
+	 * @param taxa
+	 *            a taxa do seguro da aposta, no formato double.
+	 */
+	public void alteraSeguroTaxa(double taxa) {
+		Seguro seg = new SeguroPorTaxa(this.seguro.getCusto(), taxa);
+		this.seguro = seg;
 	}
 
 	/**
@@ -75,7 +146,7 @@ public class Aposta {
 	public int getValorAposta() {
 		return this.valorAposta;
 	}
-	
+
 	/**
 	 * Metodo que retorna a previsa da aposta.
 	 * 
@@ -93,7 +164,10 @@ public class Aposta {
 	 */
 	@Override
 	public String toString() {
-		return this.nomeApostador + " - R$" + df.format(this.valorAposta / 100.00) + " - " + this.previsao;
+		if (this.seguro == null) {
+			return this.nomeApostador + " - R$" + df.format(this.valorAposta / 100.00) + " - " + this.previsao;
+		}
+		return this.nomeApostador + " - R$" + df.format(this.valorAposta / 100.00) + " - " + this.previsao + this.seguro.toString();
 	}
 
 	/**

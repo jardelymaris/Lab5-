@@ -12,8 +12,17 @@ import java.util.HashMap;
  */
 public class Controller {
 
+	/**
+	 * Lista de cenarios do sistema.
+	 */
 	private ArrayList<Cenario> cenarios;
+	/**
+	 * Representacao do caixa do sistema, no tipo inteiro.
+	 */
 	private int caixa;
+	/**
+	 * Representacao da taxa do sistema, no tipo double.
+	 */
 	private double taxa;
 
 	/**
@@ -58,7 +67,7 @@ public class Controller {
 	/**
 	 * Metodo que cadastra cenario e renorna um inteiro que o identifica.
 	 * 
-	 * @param descricao((CenarioBonus) 
+	 * @param descricao
 	 *            descricao do cenario no formato string.
 	 * @return o identificador inteiro do cenario.
 	 */
@@ -67,14 +76,23 @@ public class Controller {
 		this.cenarios.add(cenario);
 		return cenarios.size();
 	}
-	
+
+	/**
+	 * Metodo que cadastra cenario com bonus e renorna um inteiro que o identifica.
+	 * 
+	 * @param descricao
+	 *            descricao do cenario no formato string.
+	 * @param bonus
+	 *            inteiro que representa o bonus da aposta.
+	 * @return o identificador inteiro do cenario.
+	 */
 	public int cadastrarCenario(String descricao, int bonus) {
 		this.caixa -= bonus;
 		Cenario cenario = new CenarioBonus(descricao, cenarios.size() + 1, bonus);
 		this.cenarios.add(cenario);
-		
+
 		return cenarios.size();
-		
+
 	}
 
 	/**
@@ -135,6 +153,20 @@ public class Controller {
 		this.cenarios.get(idCenario - 1).encerraCenario(ocorreu);
 	}
 
+	/**
+	 * Metodo que cadastra uma aposta normal.
+	 * 
+	 * @param idCenario
+	 *            inteiro identificador do cenario.
+	 * @param nome
+	 *            string que representa o nome do apostador.
+	 * @param valor
+	 *            inteiro que representa o valor da aposta.
+	 * @param previsao
+	 *            string que representa a previsao do apostador em relacao ao
+	 *            cenario.
+	 * @return um boolean que indica se foi cadastrado ou nao.
+	 */
 	public boolean cadastrarAposta(int idCenario, String nome, int valor, String previsao) {
 		if (idCenario <= 0) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
@@ -146,26 +178,107 @@ public class Controller {
 		}
 		throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
 	}
-	
-	public int cadastraApostaAsseguradaPorValor(int idCenario, String apostador, int valor, String previsao, double valorSeguro, int custo) {
-		for (Cenario cenario: cenarios) {
+
+	/**
+	 * Metodo que cadastra uma aposta assegurada por valor.
+	 * 
+	 * @param idCenario
+	 *            inteiro identificador do cenario.
+	 * @param apostador
+	 *            string que representa o nome do apostador.
+	 * @param valor
+	 *            inteiro que representa o valor da aposta.
+	 * @param previsao
+	 *            string que representa a previsao do apostador em relacao ao
+	 *            cenario.
+	 * @param valorSeguro
+	 *            valor do seguro da aposta assegurada por valor.
+	 * @param custo
+	 *            valor do custo da aposta assegurada.
+	 * @return um boolean que indica se foi cadastrado ou nao.
+	 */
+	public int cadastraApostaAsseguradaPorValor(int idCenario, String apostador, int valor, String previsao,
+			double valorSeguro, int custo) {
+		if (idCenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
+		}
+		this.caixa += custo;
+		for (Cenario cenario : cenarios) {
 			if (cenario.getNumeracaoDoCenario() == idCenario) {
-				return cenario.cadastraApostaAsseguradaPorValor(apostador, idCenario, valor, previsao, (int) valorSeguro, custo);
+				return cenario.cadastraApostaAsseguradaPorValor(apostador, valor, previsao, (int) valorSeguro, custo);
+
 			}
 		}
-		
-		this.caixa += custo;
-		return 0;
+
+		throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
+
 	}
-	
-	public int cadastraApostaAsseguradaPorTaxa(int idCenario, String apostador, int valor, String previsao, double valorSeguro, int custo) {
-		for (Cenario cenario: cenarios) {
-			if (cenario.getNumeracaoDoCenario() == idCenario) {
-				return cenario.cadastraApostaAsseguradaPorTaxa(idCenario, apostador, valor, previsao, valorSeguro, custo);
-			}
+
+	/**
+	 * Metodo que cadastra uma aposta assegurada por taxa.
+	 * 
+	 * @param idCenario
+	 *            inteiro identificador do cenario.
+	 * @param apostador
+	 *            string que representa o nome do apostador.
+	 * @param valor
+	 *            inteiro que representa o valor da aposta.
+	 * @param previsao
+	 *            string que representa a previsao do apostador em relacao ao
+	 *            cenario.
+	 * @param valorSeguro
+	 *            valor do seguro da aposta assegurada por taxa.
+	 * @param custo
+	 *            valor do custo da aposta assegurada.
+	 * @return um boolean que indica se foi cadastrado ou nao.
+	 */
+	public int cadastraApostaAsseguradaPorTaxa(int idCenario, String apostador, int valor, String previsao,
+			double valorSeguro, int custo) {
+		if (idCenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
 		}
 		this.caixa += custo;
-		return 0;
+		for (Cenario cenario : cenarios) {
+			if (cenario.getNumeracaoDoCenario() == idCenario) {
+				return cenario.cadastraApostaAsseguradaPorTaxa(apostador, valor, previsao, valorSeguro, custo);
+			}
+		}
+
+		throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
+	}
+
+	/**
+	 * Metodo que altera de seguro por taxa para seguro por valor.
+	 * 
+	 * @param cenario
+	 *            inteiro que identifica o cenario.
+	 * @param apostaAssegurada
+	 *            inteiro que identifica a aposta assegurada.
+	 * @param valor
+	 *            valor da aposta assegurada por valor.
+	 * @return inteiro identificador da aposta.
+	 */
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		this.cenarios.get(cenario - 1).alterarSeguroValor(apostaAssegurada, valor);
+		this.caixa -= valor;
+		return apostaAssegurada;
+	}
+
+	/**
+	 * Metodo que altera de seguro por valor para seguro por taxa.
+	 * 
+	 * @param cenario
+	 *            inteiro que identifica o cenario.
+	 * @param apostaAssegurada
+	 *            inteiro que identifica a aposta assegurada.
+	 * @param valor
+	 *            valor da aposta assegurada por taxa.
+	 * @return inteiro identificador da aposta.
+	 */
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		this.cenarios.get(cenario - 1).alterarSeguroTaxa(apostaAssegurada, taxa);
+		this.caixa -= (int) (this.cenarios.get(cenario - 1).getValorAposta(apostaAssegurada) * taxa);
+		return apostaAssegurada;
 	}
 
 	/**
@@ -251,6 +364,7 @@ public class Controller {
 	 *             quando o enario ainda esta aberto.
 	 */
 	public int rateioCenario(int idCenario) throws IllegalArgumentException {
+
 		if (idCenario <= 0) {
 			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario invalido");
 		}
@@ -262,10 +376,11 @@ public class Controller {
 			throw new IllegalArgumentException(
 					"Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
-		this.caixa += this.cenarios.get(idCenario - 1).valorApostas() * this.taxa;
-//		if (this.cenarios.get(idCenario).)
-		return (int) ((this.cenarios.get(idCenario - 1).valorApostas()
-				- this.cenarios.get(idCenario - 1).valorApostas() * this.taxa)) + this.cenarios.get(idCenario -1).getBonus();
+		double caixaRecebe = this.cenarios.get(idCenario - 1).valorApostas() * this.taxa;
+		this.caixa += caixaRecebe;
+		double valorRateio = Math.ceil(this.cenarios.get(idCenario - 1).valorApostas() - caixaRecebe)
+				+ this.cenarios.get(idCenario - 1).getExtra();
+		return (int) (valorRateio);
 	}
-	
+
 }
