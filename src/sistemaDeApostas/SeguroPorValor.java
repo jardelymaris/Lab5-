@@ -22,8 +22,11 @@ public class SeguroPorValor extends Seguro {
 	 * @param valor
 	 *            valor da aposta, no tipo inteiro.
 	 */
-	public SeguroPorValor(int custo, int valor) {
+	public SeguroPorValor(int custo, int valor) throws IllegalArgumentException {
 		super(custo);
+		if (valor <= 0) {
+			throw new IllegalArgumentException();
+		}
 		this.valor = valor;
 	}
 
@@ -33,7 +36,7 @@ public class SeguroPorValor extends Seguro {
 	 * @return uma string contendo as informacoes da aposta assegurada por valor.
 	 */
 	public String toString() {
-		return " - ASSEGURADA(VALOR) - " + "R$"+ this.valor +",00";
+		return " - ASSEGURADA(VALOR) - " + "R$" + this.valor + ",00";
 	}
 
 	/**
@@ -44,6 +47,36 @@ public class SeguroPorValor extends Seguro {
 	@Override
 	public double valorASerRecebidoSeguro() {
 		return this.valor;
+	}
+
+	/**
+	 * Metodo hashCode sobrescrito.
+	 * 
+	 * @return um inteiro que representa o hashCode.
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + valor;
+		return result;
+	}
+
+	/**
+	 * Metodo equals sobrescrito que compara o valor.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SeguroPorValor other = (SeguroPorValor) obj;
+		if (valor != other.valor)
+			return false;
+		return true;
 	}
 
 }

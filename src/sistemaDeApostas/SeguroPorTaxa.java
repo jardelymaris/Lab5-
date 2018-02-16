@@ -21,8 +21,11 @@ public class SeguroPorTaxa extends Seguro {
 	 * @param taxa
 	 *            a taxa da aposta assegurada por taxa, no formato double.
 	 */
-	public SeguroPorTaxa(int custo, double taxa) {
+	public SeguroPorTaxa(int custo, double taxa) throws IllegalArgumentException {
 		super(custo);
+		if (taxa <= 0) {
+			throw new IllegalArgumentException();
+		}
 		this.taxa = taxa;
 	}
 
@@ -45,4 +48,35 @@ public class SeguroPorTaxa extends Seguro {
 		return this.taxa;
 	}
 
+	/**
+	 * Metodo hashCode sobrescrito.
+	 * 
+	 * @return inteiro que representa o hashCode.
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(taxa);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	/**
+	 * Metodo equals sobrescrito que compara a taxa.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SeguroPorTaxa other = (SeguroPorTaxa) obj;
+		if (Double.doubleToLongBits(taxa) != Double.doubleToLongBits(other.taxa))
+			return false;
+		return true;
+	}
 }

@@ -1,7 +1,7 @@
 package sistemaDeApostas;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 
 /**
  * Classe que controla o sistema de apostas, e contem uma lista de cenarios, um
@@ -62,6 +62,66 @@ public class Controller {
 	 */
 	public int getCaixa() {
 		return this.caixa;
+	}
+
+	/**
+	 * Metodo que ordena os cenarios por nome.
+	 */
+	public void ordenaPorNome() {
+		Collections.sort(this.cenarios, new NomeComparator());
+	}
+
+	/**
+	 * Metodo que ordena os cenarios por quantidade de apostas.
+	 */
+	public void ordenaPorApostas() {
+		Collections.sort(this.cenarios, new ApostasComparator());
+	}
+
+	/**
+	 * Metodo que ordena os cenarios por ordem de cadastro.
+	 */
+	public void ordenaPorCadastro() {
+		Collections.sort(this.cenarios);
+	}
+
+	/**
+	 * Metodo que altera a ordenacao de uma lista de cenarios.
+	 * 
+	 * @param ordem
+	 *            o tipo de ordem: por nome, por cdastro ou por apostas.
+	 */
+	public void alterarOrdemCenarios(String ordem) {
+		if (ordem.trim().isEmpty() || ordem == null) {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+		}
+		if (ordem.equals("nome")) {
+			this.ordenaPorNome();
+		} else if (ordem.equals("cadastro")) {
+			this.ordenaPorCadastro();
+		} else if (ordem.equals("apostas")) {
+			this.ordenaPorApostas();
+		} else {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
+	}
+
+	/**
+	 * Metodo que exibe um cenario depois que a lista foi ordenada.
+	 * 
+	 * @param cenario
+	 *            o cenario que deve ser exibido (indice +1).
+	 * @return uma String contendo as informacoes do cenario.
+	 */
+	public String exibirCenarioOrdenado(int cenario) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
+		}
+		if (cenario - 1 > this.cenarios.size()) {
+			throw new IndexOutOfBoundsException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		}
+		return this.cenarios.get(cenario - 1).toString();
+
 	}
 
 	/**

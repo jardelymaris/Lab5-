@@ -16,6 +16,42 @@ public class testAposta {
 	private Aposta aposta;
 
 	/**
+	 * Metodo que testa criar uma aposta assegurada com valorSeguro menor que zero.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAsseguradaValorSeguroMenorZero() {
+		this.aposta = new Aposta("Adelma", 1000, "VAI ACONTECER", -1, 40, "valor");
+		fail("O valor do seguro da aposta nao pode ser menor que zero");
+	}
+
+	/**
+	 * Metodo que testa criar uma aposta assegurada com valorSeguro zero.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAsseguradaValorSeguroZero() {
+		this.aposta = new Aposta("Adelma", 1000, "VAI ACONTECER", 0, 40, "valor");
+		fail("O valor do seguro da aposta nao pode ser zero");
+	}
+
+	/**
+	 * Metodo que testa criar uma aposta assegurada com custo zero.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAsseguaradaCustoSeguroZero() {
+		this.aposta = new Aposta("Adelma", 1000, "VAI ACONTECER", 200, 0, "valor");
+		fail("O custo do seguro da aposta nao pode ser zero");
+	}
+
+	/**
+	 * Metodo que testa criar uma aposta assegurada com custo menor que zero.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAsseguaradaCustoSeguroMenorZero() {
+		this.aposta = new Aposta("Adelma", 1000, "VAI ACONTECER", 200, -1, "valor");
+		fail("O custo do seguro da aposta nao pode ser menor que zero");
+	}
+
+	/**
 	 * Metodo que testa criar uma aposta com nome do apostador nulo.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -76,6 +112,24 @@ public class testAposta {
 	public void testToString() {
 		this.aposta = new Aposta("Rodolfo", 199, "VAI ACONTECER");
 		assertEquals(aposta.toString(), "Rodolfo - R$1,99 - VAI ACONTECER");
+	}
+
+	/**
+	 * Metodo que testa o toString de Aposta com seguro por valor.
+	 */
+	@Test
+	public void testToStringComSeguroValor() {
+		this.aposta = new Aposta("Isabel", 1000, "VAI ACONTECER", 200, 30, "valor");
+		assertEquals(aposta.toString(), "Isabel - R$10,00 - VAI ACONTECER - ASSEGURADA(VALOR) - R$200,00");
+	}
+
+	/**
+	 * Metodo que testa o toString de Aposta com seguro por taxa.
+	 */
+	@Test
+	public void testToStringComSeguroTaxa() {
+		this.aposta = new Aposta("Isabel", 1000, "VAI ACONTECER", 0.2, 30, "taxa");
+		assertEquals(aposta.toString(), "Isabel - R$10,00 - VAI ACONTECER - ASSEGURADA(TAXA) - 20%");
 	}
 
 	/**

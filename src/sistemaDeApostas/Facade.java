@@ -26,10 +26,18 @@ public class Facade {
 		args = new String[] { "sistemaDeApostas.Facade", "lib/acceptance_test/us1_test.txt",
 				"lib/acceptance_test/us2_test.txt", "lib/acceptance_test/us3_test.txt",
 				"lib/acceptance_test/us4_test.txt", "lib/acceptance_test/us5_test.txt",
-				"lib/acceptance_test/us6_test.txt" };
+				"lib/acceptance_test/us6_test.txt", "lib/acceptance_test/us7_test.txt"  };
 		EasyAccept.main(args);
 	}
 
+	public void alterarOrdem(String ordem) {
+		this.controle.alterarOrdemCenarios(ordem);
+	}
+	
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.controle.exibirCenarioOrdenado(cenario);
+	}
+	
 	/**
 	 * Metodo que inicializa o sistema.
 	 * 

@@ -51,7 +51,7 @@ public class CenarioBonus extends Cenario {
 	@Override
 	public String toString() {
 		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado + " - R$ "
-				+ df.format(this.bonus / 100);
+				+ df.format(this.bonus / 100.0);
 	}
 
 	/**

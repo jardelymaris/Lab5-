@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 /**
  * Classe que cria um cenario contendo uma lista de apostas, um estado, uma
- * descricao e uma representacao inteira.
+ * descricao e uma representacao inteira. A classe implementa o comparable que
+ * compara os cenarios pela ordem de cadastramento.
  * 
  * @author Jardely Maris da Silva Santos - 117110274
  *
  */
-public class Cenario {
+public class Cenario implements Comparable<Cenario> {
 
 	/**
 	 * Representacao do cenario, no fomato String.
@@ -64,6 +65,24 @@ public class Cenario {
 	 */
 	public int getNumeracaoDoCenario() {
 		return this.numeracaoDoCenario;
+	}
+
+	/**
+	 * Metodo que retorna o nome do cenario.
+	 * 
+	 * @return o nome do cenario.
+	 */
+	public String getCenario() {
+		return this.cenario;
+	}
+
+	/**
+	 * Metodo que retorna a quantidade de apostas do cenario.
+	 * 
+	 * @return o numero de apostas no cenario.
+	 */
+	public int getQtdApostasCenario() {
+		return this.apostasNoCenario.size();
 	}
 
 	/**
@@ -122,11 +141,11 @@ public class Cenario {
 		if (previsao == null || previsao.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
-			
+
 		} else if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
 		}
-		
+
 		Aposta aposta = new Aposta(apostador, valor, previsao, valorSeguro, custo, "valor");
 		this.apostasNoCenario.add(aposta);
 		return this.apostasNoCenario.size();
@@ -171,11 +190,11 @@ public class Cenario {
 		if (previsao == null || previsao.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
-			
+
 		} else if (!previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER")) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
 		}
-		
+
 		Aposta aposta = new Aposta(apostador, valor, previsao, taxa, custo, "taxa");
 		this.apostasNoCenario.add(aposta);
 		return this.apostasNoCenario.size();
@@ -242,7 +261,7 @@ public class Cenario {
 	 * @return um inteiro que contem o valor de uma aposta.
 	 */
 	public int getValorAposta(int idAposta) {
-		return this.apostasNoCenario.get(idAposta).getValorAposta();
+		return this.apostasNoCenario.get(idAposta - 1).getValorAposta();
 	}
 
 	/**
@@ -305,7 +324,7 @@ public class Cenario {
 		if (ocorreu) {
 			this.estado = "Finalizado (ocorreu)";
 		} else {
-			this.estado = "Finalizado (nao ocorreu)";
+			this.estado = "Finalizado (n ocorreu)";
 		}
 		return this.estado;
 	}
@@ -319,6 +338,7 @@ public class Cenario {
 	@Override
 	public String toString() {
 		return this.numeracaoDoCenario + " - " + this.cenario + " - " + this.estado;
+
 	}
 
 	/**
@@ -363,6 +383,17 @@ public class Cenario {
 		} else if (!cenario.equals(other.cenario))
 			return false;
 		return true;
+	}
+
+	/**
+	 * Metodo que implementa o compareTo, comparando os cenarios pela ordem de
+	 * cadastramento.
+	 * 
+	 * @return um inteiro que indica se é maior, menor ou se são iguais.
+	 */
+	@Override
+	public int compareTo(Cenario c) {
+		return this.getNumeracaoDoCenario() - c.getNumeracaoDoCenario();
 	}
 
 }

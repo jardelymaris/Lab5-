@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LAB5_PARTE1_JARDELY_MARIS</name>
+	<name>LAB5_PARTE2_JARDELY_MARIS</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,9 +16,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>lib/acceptance_test/us6_test.txt</name>
+			<name>lib/acceptance_test/us7_test.txt</name>
 			<type>1</type>
-			<location>/home/jardelymaris/eclipse-workspace/Pasta sem título/lib/acceptance_test/us6_test.txt</location>
+			<location>/home/jardelymaris/eclipse-workspace/LAB5_PARTE2_JARDELY_MARIS/lib/acceptance_test/us7_test.txt</location>
 		</link>
 	</linkedResources>
 </projectDescription>

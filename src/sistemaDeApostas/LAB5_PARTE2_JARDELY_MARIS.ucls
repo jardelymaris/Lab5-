@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="sistemaDeApostas.Facade" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="401" width="324" x="-69" y="-9"/>    
+  <class id="1" language="java" name="sistemaDeApostas.SeguroPorValor" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/SeguroPorValor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="167" width="198" x="-85" y="1914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="sistemaDeApostas.Seguro" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/Seguro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="149" width="198" x="-128" y="1719"/>    
+  <class id="2" language="java" name="sistemaDeApostas.SeguroPorTaxa" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/SeguroPorTaxa.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="167" width="198" x="153" y="1914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="sistemaDeApostas.SeguroPorTaxa" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/SeguroPorTaxa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="131" width="198" x="-144" y="1908"/>    
+  <class id="3" language="java" name="sistemaDeApostas.CenarioBonus" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="185" width="159" x="-85" y="1356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="sistemaDeApostas.Cenario" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="455" width="347" x="-69" y="891"/>    
+  <class id="4" language="java" name="sistemaDeApostas.Aposta" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="293" width="221" x="114" y="1356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="sistemaDeApostas.Aposta" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="293" width="221" x="-128" y="1386"/>    
+  <class id="5" language="java" name="sistemaDeApostas.Seguro" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/Seguro.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="185" width="198" x="114" y="1689"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="sistemaDeApostas.Controller" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="419" width="361" x="-69" y="432"/>    
+  <class id="6" language="java" name="sistemaDeApostas.Cenario" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="455" width="347" x="-10" y="861"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="sistemaDeApostas.SeguroPorValor" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/SeguroPorValor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="131" width="198" x="94" y="1908"/>    
+  <class id="7" language="java" name="sistemaDeApostas.Controller" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="419" width="361" x="-10" y="402"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="sistemaDeApostas.CenarioBonus" project="Pasta sem título" 
-    file="/Pasta sem título/src/sistemaDeApostas/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="185" width="159" x="133" y="1386"/>    
+  <class id="8" language="java" name="sistemaDeApostas.Facade" project="LAB5_PARTE2_JARDELY_MARIS" 
+    file="/LAB5_PARTE2_JARDELY_MARIS/src/sistemaDeApostas/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="401" width="324" x="-10" y="-39"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -74,49 +74,49 @@
     </display>  
   </class>  
   <generalization id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
   <association id="10">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="11" name="apostasNoCenario"/>      
-      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
+      <attribute id="11" name="seguro"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="14">    
+  <association id="13">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="15" name="cenarios"/>      
-      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+      <attribute id="14" name="apostasNoCenario"/>      
+      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="18" name="seguro"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+  <generalization id="16">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="18">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="19" name="controle"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="21" name="controle"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+  <association id="21">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="22" name="cenarios"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

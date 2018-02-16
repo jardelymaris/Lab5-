@@ -16,7 +16,14 @@ import sistemaDeApostas.CenarioBonus;
  */
 public class testCenario {
 
+	/**
+	 * Representacao do cenario normal, sem bonus.
+	 */
 	private Cenario cenario;
+	
+	/**
+	 * Representacao de um cenario com bonus.
+	 */
 	private Cenario cenarioBonus;
 
 	/**
@@ -36,7 +43,7 @@ public class testCenario {
 		this.cenario = new Cenario(null, 1);
 		fail("O argumento do cenario nao pode ser nulo");
 	}
-	
+
 	/**
 	 * Metodo que testa criar um cenario com bonus com descricao nula.
 	 */
@@ -54,7 +61,7 @@ public class testCenario {
 		this.cenario = new Cenario("", 1);
 		fail("O argumento do cenario nao pode ser vazio");
 	}
-	
+
 	/**
 	 * Metodo que testa criar um cenario bonus com descricao vazia.
 	 */
@@ -63,7 +70,7 @@ public class testCenario {
 		this.cenarioBonus = new CenarioBonus("", 2, 1000);
 		fail("O argumento do cenario nao pode ser vazio");
 	}
-	
+
 	/**
 	 * Metodo que testa criar um cenario bonus com bonus menor que zero.
 	 */
@@ -72,7 +79,7 @@ public class testCenario {
 		this.cenarioBonus = new CenarioBonus("Programar no carnaval", 2, -1);
 		fail("O bonus do cenario nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que testa criar um cenario bonus com bonus igual zero.
 	 */
@@ -90,7 +97,7 @@ public class testCenario {
 		this.cenario.cadastraAposta(null, 1000, "N VAI ACONTECER");
 		fail("Nome do apostador nao pode ser nulo");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com nome nulo.
 	 */
@@ -108,7 +115,7 @@ public class testCenario {
 		this.cenario.cadastraAposta("Rodolfo", 1000, null);
 		fail("Previsao da aposta nao pode ser nula");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com nome vazio.
 	 */
@@ -126,7 +133,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, null, 200, 50);
 		fail("Previsao nao pode ser nulo");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com previsao nulo.
 	 */
@@ -135,7 +142,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "", 200, 50);
 		fail("Previsao nao pode ser vazio");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com valor menor que zero.
 	 */
@@ -144,7 +151,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", -1, "VAI ACONTECER", 200, 50);
 		fail("Previsao valor nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com valor zero.
 	 */
@@ -153,7 +160,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 0, "VAI ACONTECER", 200, 50);
 		fail("Previsao valor nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com custo menor que zero.
 	 */
@@ -162,7 +169,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "VAI ACONTECER", 200, -1);
 		fail("Previsao custo nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com valor zero.
 	 */
@@ -171,7 +178,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "VAI ACONTECER", 200, 0);
 		fail("Previsao custo nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com valor menor que zero.
 	 */
@@ -180,7 +187,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "VAI ACONTECER", -1, 50);
 		fail("Previsao valor do seguro nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por valor com valor zero.
 	 */
@@ -189,7 +196,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "VAI ACONTECER", 0, 50);
 		fail("Previsao valor do seguro nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com nome nulo.
 	 */
@@ -198,7 +205,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa(null, 1000, "VAI ACONTECER", 0.02, 50);
 		fail("Nome do apostador nao pode ser nulo");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com nome vazio.
 	 */
@@ -216,7 +223,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, null, 0.02, 50);
 		fail("Previsao nao pode ser nulo");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com previsao nulo.
 	 */
@@ -225,7 +232,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, "", 0.02, 50);
 		fail("Previsao nao pode ser vazio");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com valor menor que zero.
 	 */
@@ -234,7 +241,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", -1, "VAI ACONTECER", 0.02, 50);
 		fail("Previsao valor nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com valor zero.
 	 */
@@ -243,7 +250,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 0, "VAI ACONTECER", 0.02, 50);
 		fail("Previsao valor nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com custo menor que zero.
 	 */
@@ -252,7 +259,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, "VAI ACONTECER", 0.02, -1);
 		fail("Previsao custo nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com valor zero.
 	 */
@@ -261,7 +268,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, "VAI ACONTECER", 0.02, 0);
 		fail("Previsao custo nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com valor menor que zero.
 	 */
@@ -270,7 +277,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "VAI ACONTECER", -1, 50);
 		fail("Previsao valor do seguro nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta segurada por taxa com valor zero.
 	 */
@@ -279,7 +286,7 @@ public class testCenario {
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, "VAI ACONTECER", 0, 50);
 		fail("Previsao valor do seguro nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que cadastra aposta com nome vazio.
 	 */
@@ -323,7 +330,7 @@ public class testCenario {
 	public void testCadastraAposta() {
 		assertTrue(cenario.cadastraAposta("Rodolfo", 1000, "N VAI ACONTECER"));
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta com seguro por valor.
 	 */
@@ -331,7 +338,7 @@ public class testCenario {
 	public void testCadastraApostaSeguroValor() {
 		assertEquals(1, cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "N VAI ACONTECER", 200, 50));
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta com seguro por taxa.
 	 */
@@ -350,10 +357,11 @@ public class testCenario {
 		this.cenario.cadastraAposta("Adelma", 200000, "VAI ACONTECER");
 		this.cenario.cadastraApostaAsseguradaPorTaxa("Luna", 1000, "N VAI ACONTECER", 0.02, 50);
 		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "N VAI ACONTECER", 200, 50);
-		assertEquals(this.cenario.listarApostas(), "Rodolfo - R$1000,00 - VAI ACONTECER\n"
-				+ "Andre - R$1,99 - N VAI ACONTECER\n" + "Adelma - R$2000,00 - VAI ACONTECER\n" + 
-				"Luna - R$10,00 - N VAI ACONTECER - ASSEGURADA(TAXA) - 2%\n" +
-				"Luna - R$10,00 - N VAI ACONTECER - ASSEGURADA(VALOR) - R$200,00\n");
+		assertEquals(this.cenario.listarApostas(),
+				"Rodolfo - R$1000,00 - VAI ACONTECER\n" + "Andre - R$1,99 - N VAI ACONTECER\n"
+						+ "Adelma - R$2000,00 - VAI ACONTECER\n"
+						+ "Luna - R$10,00 - N VAI ACONTECER - ASSEGURADA(TAXA) - 2%\n"
+						+ "Luna - R$10,00 - N VAI ACONTECER - ASSEGURADA(VALOR) - R$200,00\n");
 	}
 
 	/**
@@ -372,7 +380,8 @@ public class testCenario {
 		this.cenario.cadastraAposta("Rodolfo", 100000, "VAI ACONTECER");
 		this.cenario.cadastraAposta("Andre", 199, "N VAI ACONTECER");
 		this.cenario.cadastraAposta("Adelma", 200000, "VAI ACONTECER");
-		assertEquals(this.cenario.totalApostas(), 3);
+		this.cenario.cadastraApostaAsseguradaPorValor("Luna", 1000, "N VAI ACONTECER", 200, 50);
+		assertEquals(this.cenario.totalApostas(), 4);
 	}
 
 	/**
@@ -393,11 +402,27 @@ public class testCenario {
 	}
 
 	/**
+	 * Metodo que testa encerrar um cenarioBonus como que ocorreu.
+	 */
+	@Test
+	public void testEncerraCenarioBonusOcorreu() {
+		assertEquals(this.cenarioBonus.encerraCenario(true), "Finalizado (ocorreu)");
+	}
+
+	/**
 	 * Metodo que testa encerrar um cenario como que nao ocorreu.
 	 */
 	@Test
 	public void testEncerraCenarioNaoOcorreu() {
 		assertEquals(this.cenario.encerraCenario(false), "Finalizado (nao ocorreu)");
+	}
+
+	/**
+	 * Metodo que testa encerrar um cenarioBonus como que nao ocorreu.
+	 */
+	@Test
+	public void testEncerraCenarioBonusNaoOcorreu() {
+		assertEquals(this.cenarioBonus.encerraCenario(false), "Finalizado (nao ocorreu)");
 	}
 
 	/**
@@ -416,6 +441,24 @@ public class testCenario {
 		this.cenario.encerraCenario(true);
 		assertEquals(this.cenario.toString(),
 				"1 - Vou superar a ultima semana de aula de dezembro - Finalizado (ocorreu)");
+	}
+
+	/**
+	 * Testa o metodo toString com cenarioBonus finalizado, n ocorreu.
+	 */
+	@Test
+	public void testToStringCenarioComBonusFinalizadoNaoOcorreu() {
+		this.cenarioBonus.encerraCenario(false);
+		assertEquals(this.cenarioBonus.toString(), "2 - Carnaval programando - Finalizado (nao ocorreu) - R$ 10,00");
+	}
+
+	/**
+	 * Testa o metodo toString com cenarioBonus finalizado, ocorreu.
+	 */
+	@Test
+	public void testToStringCenarioComBonusFinalizadoOcorreu() {
+		this.cenarioBonus.encerraCenario(true);
+		assertEquals(this.cenarioBonus.toString(), "2 - Carnaval programando - Finalizado (ocorreu) - R$ 10,00");
 	}
 
 	/**
