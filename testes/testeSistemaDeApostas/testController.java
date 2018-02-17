@@ -90,7 +90,7 @@ public class testController {
 		this.controle.cadastrarCenario("", 1000);
 		fail("Descricao nao pode ser vazia");
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar um cenario com bonus zero.
 	 */
@@ -99,7 +99,7 @@ public class testController {
 		this.controle.cadastrarCenario("Vai chover em PL", 0);
 		fail("Bonus nao pode ser zero");
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar um cenario com bonus menor que zero.
 	 */
@@ -108,7 +108,7 @@ public class testController {
 		this.controle.cadastrarCenario("Vai chover em PL", -1);
 		fail("Bonus nao pode ser menor que zero");
 	}
-	
+
 	/**
 	 * Metodo que testa exibir um cenario.
 	 */
@@ -124,12 +124,10 @@ public class testController {
 		this.controle.fecharAposta(1, true);
 		this.controle.fecharAposta(2, false);
 		this.controle.fecharAposta(3, false);
-		assertEquals(this.controle.exibirCenario(3),
-				"3 - Vai chover hoje - Finalizado (n ocorreu) - R$ 1,00");
+		assertEquals(this.controle.exibirCenario(3), "3 - Vai chover hoje - Finalizado (n ocorreu) - R$ 1,00");
 		assertEquals(this.controle.exibirCenario(1),
 				"1 - Vou superar a ultima semana de aula de Dezembro - Finalizado (ocorreu)");
-		assertEquals(this.controle.exibirCenario(2),
-				"2 - Rodolfo vai passar em um concurso - Finalizado (n ocorreu)");
+		assertEquals(this.controle.exibirCenario(2), "2 - Rodolfo vai passar em um concurso - Finalizado (n ocorreu)");
 
 	}
 
@@ -165,8 +163,8 @@ public class testController {
 		this.controle.cadastrarCenario("Luna vai tomar banho hj", 10000);
 		assertEquals(this.controle.exibirCenarios(),
 				"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado\n"
-						+ "2 - Rodolfo vai passar em um concurso - Nao finalizado\n" +
-						"3 - Luna vai tomar banho hj - Nao finalizado - R$ 100,00\n");
+						+ "2 - Rodolfo vai passar em um concurso - Nao finalizado\n"
+						+ "3 - Luna vai tomar banho hj - Nao finalizado - R$ 100,00\n");
 	}
 
 	/**
@@ -195,106 +193,111 @@ public class testController {
 		this.controle.cadastrarCenario("vai chover");
 		assertEquals(this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", 30, 20), 1);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por valor com id do cenario invalido.
+	 * Metodo que testa cadastrar aposta assegurada por valor com id do cenario
+	 * invalido.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorIdInvalido() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(2, "Luna", 1000, "VAI ACONTECER", 30, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com nome vazio.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorNomeVazio() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "", 1000, "VAI ACONTECER", 30, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com nome nulo.
 	 */
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void testCadastrarApostaAsseguradaPorValorNomeNulo() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, null, 1000, "VAI ACONTECER", 30, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com valor zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorValorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 0, "VAI ACONTECER", 30, 20);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por valor com valor menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por valor com valor menor que
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", -1, "VAI ACONTECER", 30, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com previsao vazia.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorPrevisaoVazia() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "", 30, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com previsao nula.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorPrevisaoNulo() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, null, 30, 20);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por valor com valor do seguro zero.
+	 * Metodo que testa cadastrar aposta assegurada por valor com valor do seguro
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorValorSeguroZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", 0, 20);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por valor com valor do seguro menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por valor com valor do seguro
+	 * menor que zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorSeguroMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", -1, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por valor com custo zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorCustoZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", 30, 0);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por valor com custo menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por valor com custo menor que
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorCustoMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", 30, -1);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa.
 	 */
@@ -303,106 +306,110 @@ public class testController {
 		this.controle.cadastrarCenario("vai chover");
 		assertEquals(this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", 0.3, 20), 1);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por taxa com id d cenario invalido.
+	 * Metodo que testa cadastrar aposta assegurada por taxa com id d cenario
+	 * invalido.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaIdInvalido() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(2, "Luna", 1000, "VAI ACONTECER", 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com nome vazio.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaNomeVazio() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "", 1000, "VAI ACONTECER", 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com nome nulo.
 	 */
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaNomeNulo() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, null, 1000, "VAI ACONTECER", 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com valor zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaValorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 0, "VAI ACONTECER", 0.3, 20);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por taxa com valor menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por taxa com valor menor que
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", -1, "VAI ACONTECER", 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com previsao vazia.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaPrevisaoVazia() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "", 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com previsao nula.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaPrevisaoNulo() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, null, 0.3, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com taxa zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaTaxaSeguroZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", 0, 20);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por taxa com taxa menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por taxa com taxa menor que
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorValorTaxaSeguroMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", -1, 20);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar aposta assegurada por taxa com custo zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaCustoZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", 0.3, 0);
 	}
-	
+
 	/**
-	 * Metodo que testa cadastrar aposta assegurada por taxa com custo menor que zero.
+	 * Metodo que testa cadastrar aposta assegurada por taxa com custo menor que
+	 * zero.
 	 */
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarApostaAsseguradaPorTaxaCustoMenorZero() {
 		this.controle.cadastrarCenario("vai chover");
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", 0.3, -1);
 	}
-	
+
 	/**
 	 * Metodo que testa alter o seguro de taxa para valor.
 	 */
@@ -412,7 +419,7 @@ public class testController {
 		this.controle.cadastraApostaAsseguradaPorTaxa(1, "Luna", 1000, "VAI ACONTECER", 0.3, 30);
 		assertEquals(this.controle.alterarSeguroValor(1, 1, 1000), 1);
 	}
-	
+
 	/**
 	 * Metodo que testa alter o seguro de valor para taxa.
 	 */
@@ -422,7 +429,7 @@ public class testController {
 		this.controle.cadastraApostaAsseguradaPorValor(1, "Luna", 1000, "VAI ACONTECER", 50, 30);
 		assertEquals(this.controle.alterarSeguroTaxa(1, 1, 0.6), 1);
 	}
-	
+
 	/**
 	 * Metodo que testa cadastrar uma aposta com id invalido e com previsao errada.
 	 */
@@ -553,7 +560,7 @@ public class testController {
 	@Test
 	public void testRateioCenario() {
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
-		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); //COM BONUS
+		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); // COM BONUS
 		this.controle.cadastrarAposta(1, "Adelma", 1000, "VAI ACONTECER");
 		this.controle.cadastrarAposta(1, "Luna", 1000, "VAI ACONTECER");
 		this.controle.cadastrarAposta(1, "Aliedson", 1000, "VAI ACONTECER");
@@ -565,34 +572,32 @@ public class testController {
 		assertEquals(this.controle.rateioCenario(1), 29700);
 		assertEquals(this.controle.rateioCenario(2), 2980);
 	}
-	
+
+	/**
+	 * Metodo que testa ordenar cenario por nome e exibi-los.
+	 */
 	@Test
 	public void testExibirCenarioOrdenadoNome() {
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
-		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); //COM BONUS
+		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); // COM BONUS
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro", 2000);
-		
 		this.controle.alterarOrdemCenarios("nome");
-		assertEquals(this.controle.exibirCenarioOrdenado(3), "3 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
-		assertEquals(this.controle.exibirCenarioOrdenado(2),"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
-		assertEquals(this.controle.exibirCenarioOrdenado(1), "2 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(3),
+				"3 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(2),
+				"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
+		assertEquals(this.controle.exibirCenarioOrdenado(1),
+				"2 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
 	}
-	
-	@Test
-	public void testExibirCenarioOrdenadoCadastro() {
-		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
-		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro", 2000);
-		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); //COM BONUS
-		this.controle.cadastrarCenario("Vai chover hoje");
-		this.controle.alterarOrdemCenarios("cadastro");
-		assertEquals(this.controle.exibirCenarioOrdenado(4), "4 - Vai chover hoje - Nao finalizado");
-	}
-	
+
+	/**
+	 * Metodo que testa ordenar cenario por apostas e exibi-los.
+	 */
 	@Test
 	public void testExibirCenarioOrdenadoApostas() {
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro", 2000);
-		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); //COM BONUS
+		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); // COM BONUS
 		this.controle.cadastrarCenario("Vai chover hoje");
 		this.controle.cadastrarAposta(1, "Luna", 1000, "VAI ACONTECER");
 		this.controle.cadastrarAposta(1, "Aliedson", 1000, "VAI ACONTECER");
@@ -602,16 +607,22 @@ public class testController {
 		this.controle.cadastrarAposta(4, "Adelma", 30000, "N VAI ACONTECER");
 		this.controle.alterarOrdemCenarios("apostas");
 		assertEquals(this.controle.exibirCenarioOrdenado(4), "4 - Vai chover hoje - Nao finalizado");
-		assertEquals(this.controle.exibirCenarioOrdenado(2), "2 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
-		assertEquals(this.controle.exibirCenarioOrdenado(3), "3 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
-		assertEquals(this.controle.exibirCenarioOrdenado(1), "1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
+		assertEquals(this.controle.exibirCenarioOrdenado(2),
+				"2 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(3),
+				"3 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(1),
+				"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
 	}
-	
+
+	/**
+	 * Metodo que testa ordenar cenario por apostas e exibi-los.
+	 */
 	@Test
 	public void testExibirCenarioOrdenadoApostas2() {
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
 		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro", 2000);
-		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); //COM BONUS
+		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); // COM BONUS
 		this.controle.cadastrarCenario("Vai chover hoje");
 		this.controle.cadastrarAposta(3, "Luna", 1000, "VAI ACONTECER");
 		this.controle.cadastrarAposta(3, "Aliedson", 1000, "VAI ACONTECER");
@@ -621,8 +632,54 @@ public class testController {
 		this.controle.cadastrarAposta(1, "Adelma", 30000, "N VAI ACONTECER");
 		this.controle.alterarOrdemCenarios("apostas");
 		assertEquals(this.controle.exibirCenarioOrdenado(4), "4 - Vai chover hoje - Nao finalizado");
-		assertEquals(this.controle.exibirCenarioOrdenado(1), "3 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
-		assertEquals(this.controle.exibirCenarioOrdenado(3), "2 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
-		assertEquals(this.controle.exibirCenarioOrdenado(2), "1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
+		assertEquals(this.controle.exibirCenarioOrdenado(1),
+				"3 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(3),
+				"2 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(2),
+				"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
+	}
+
+	/**
+	 * Metodo que testa ordenar cenario por cadastro e exibi-los.
+	 */
+	@Test
+	public void testExibirCenarioOrdenadoCadastro() {
+		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro");
+		this.controle.cadastrarCenario("Vou superar a ultima semana de aula de Dezembro", 2000);
+		this.controle.cadastrarCenario("Rodolfo vai passar em um concurso", 1000); // COM BONUS
+		this.controle.cadastrarCenario("Vai chover hoje");
+		this.controle.alterarOrdemCenarios("cadastro");
+		assertEquals(this.controle.exibirCenarioOrdenado(4), "4 - Vai chover hoje - Nao finalizado");
+		assertEquals(this.controle.exibirCenarioOrdenado(3),
+				"3 - Rodolfo vai passar em um concurso - Nao finalizado - R$ 10,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(2),
+				"2 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado - R$ 20,00");
+		assertEquals(this.controle.exibirCenarioOrdenado(1),
+				"1 - Vou superar a ultima semana de aula de Dezembro - Nao finalizado");
+	}
+
+	/**
+	 * Metodo que testa ordenar com ordem Nula.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void testOrdenarCenarioOpcaoNula() {
+		this.controle.alterarOrdemCenarios(null);
+	}
+
+	/**
+	 * Metodo que testa ordenar com ordem vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testOrdenarCenarioOpcaoVazia() {
+		this.controle.alterarOrdemCenarios(" ");
+	}
+
+	/**
+	 * Metodo que testa ordenar com ordem invalida.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testOrdenarCenarioOpcaoInvalida() {
+		this.controle.alterarOrdemCenarios("azul");
 	}
 }
